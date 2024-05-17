@@ -32,14 +32,9 @@ map_size = map_matrix.shape
 
 # function to draw the map
 def draw_map():
-    for i in range(np.square(map_size[0])):
-        column = i % 4
-        row = i // 4
-        pygame.draw.rect(screen, 'light gray', [], [], 20, 20)
-
-    for i in range(map_matrix[0]):
-        for j in range(map_matrix[1]):
-            pygame.draw.rect(screen, 'light gray', [], [], 20, 20)
+    for i in range(map_matrix.shape[0]):
+        for j in range(map_matrix.shape[1]):
+            pygame.draw.rect(screen, 'light gray', (x, y, 200, 200))
 
 
 # main game loop
