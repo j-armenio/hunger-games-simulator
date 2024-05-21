@@ -1,15 +1,13 @@
 import pygame, numpy as np
 
+import libs.game_variables as gv
+
 pygame.init()
 
-WIDTH = 1000
-HEIGHT = 1000
-MAP_BORDER = 50
-
-screen = pygame.display.set_mode([WIDTH, HEIGHT])
+screen = pygame.display.set_mode([gv.WIDTH, gv.HEIGHT])
 pygame.display.set_caption('Hunger Games Simulator')
 timer = pygame.time.Clock()
-fps = 60
+fps = gv.FPS
    
 # game variables
 players = ['red']
@@ -38,17 +36,20 @@ map_matrix = np.array([
 ])
 map_size = map_matrix.shape
 
+def a_star_search(start, goal):
+    pygame.quit()
+
 # function to draw the map
 def draw_map():
     # draw the squares
     for i in range(map_size[0]):
         for j in range(map_size[1]):            
-            pygame.draw.rect(screen, 'light gray', (MAP_BORDER + j * 50, MAP_BORDER + i * 50, 50, 50))
+            pygame.draw.rect(screen, 'light gray', (gv.MAP_BORDER + j * 50, gv.MAP_BORDER + i * 50, 50, 50))
     
     # draw the lines
     for i in range(map_size[0] + 1):
-        pygame.draw.line(screen, 'black', (MAP_BORDER, MAP_BORDER + i * 50), (WIDTH - MAP_BORDER, MAP_BORDER + i * 50))
-        pygame.draw.line(screen, 'black', (MAP_BORDER + i * 50, MAP_BORDER), (MAP_BORDER + i * 50, HEIGHT - MAP_BORDER))
+        pygame.draw.line(screen, 'black', (gv.MAP_BORDER, gv.MAP_BORDER + i * 50), (gv.WIDTH - gv.MAP_BORDER, gv.MAP_BORDER + i * 50))
+        pygame.draw.line(screen, 'black', (gv.MAP_BORDER + i * 50, gv.MAP_BORDER), (gv.MAP_BORDER + i * 50, gv.HEIGHT - gv.MAP_BORDER))
 
 # main game loop
 run = True
