@@ -19,7 +19,7 @@ class ColorGridApp:
         self.root = root
         self.grid_size = grid_size
         self.cell_size = cell_size
-        self.current_color = "white"
+        self.current_color = "#008000"
 
         self.canvas = tk.Canvas(root, width=grid_size*cell_size, height=grid_size*cell_size)
         self.canvas.pack()
@@ -31,7 +31,7 @@ class ColorGridApp:
             button = tk.Button(self.color_buttons_frame, bg=color, width=2, command=lambda c=color: self.set_color(c))
             button.pack(side=tk.LEFT)
 
-        self.save_button = tk.Button(root, text="Save Grid", command=self.save_grid)
+        self.save_button = tk.Button(root, text="Import Grid", command=self.save_grid)
         self.save_button.pack()
 
         self.canvas.bind("<Button-1>", self.paint)
@@ -50,7 +50,7 @@ class ColorGridApp:
                 y1 = j * self.cell_size
                 x2 = x1 + self.cell_size
                 y2 = y1 + self.cell_size
-                self.canvas.create_rectangle(x1, y1, x2, y2, fill="white", outline="black")
+                self.canvas.create_rectangle(x1, y1, x2, y2, fill="#008000", outline="black")
 
     def paint(self, event):
         x, y = event.x, event.y
@@ -68,6 +68,10 @@ class ColorGridApp:
                 file.write(" ".join(map(str, row)) + "\n")
 
 if __name__ == "__main__":
+    grid_size = input('Enter the grid size: (default 50)')
+    if (grid_size == ''):
+        grid_size = 50
+
     root = tk.Tk()
-    app = ColorGridApp(root, grid_size=50, cell_size=20)
+    app = ColorGridApp(root, grid_size=int(grid_size), cell_size=15)
     root.mainloop()
