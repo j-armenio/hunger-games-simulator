@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "./libs/utils.h"
+
 using namespace std;
 
 enum class MapUnitType {
@@ -55,7 +57,17 @@ class MapManager {
 
     public:
         MapManager(vector<vector<MapUnit>> map, int numRows, int numCols) : map(map), numRows(numRows), numCols(numCols) {};
-        ~MapManager() {};
+        ~MapManager() { 
+            for (int i = 0; i < numRows; i++) {
+                for (int j = 0; j < numCols; j++) {
+                    delete map[i][j].getCoord();
+                }
+            }
+        };
+
+        int getNumRows() { return numRows; };
+        int getNumCols() { return numCols; };
+        Coord *getCoord(int x, int y) { return map[x][y].getCoord(); };
 
         void printMap() {
         for (int i = 0; i < numRows; i++) {
@@ -64,17 +76,10 @@ class MapManager {
             }
             cout << endl;
             }
-        }   
-};
-
-void printMatrix(vector<vector<int>>& mat) {
-    for (auto& row : mat) {
-        for (int& element : row) {
-            cout << element << " ";
         }
-        cout << endl;
-    }
-}
+
+        void MapManagerTEST() { }
+};
 
 int main()
 {
@@ -122,6 +127,9 @@ int main()
     MapManager *mapManager = new MapManager(mapUnitMat, numRows, numCols);
 
     mapManager->printMap();
+
+
+
 
     delete mapManager;
 
