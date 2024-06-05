@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -Wall -Wextra
+CXXFLAGS = -Wall -Wextra -g
 SRC = $(filter-out teste.cpp, $(wildcard *.cpp))
 OBJ = $(SRC:.cpp=.o)
 TARGET = main
