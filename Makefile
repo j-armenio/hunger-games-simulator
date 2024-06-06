@@ -1,26 +1,36 @@
+# Compiler
 CXX = g++
-CXXFLAGS = -Wall -Wextra -g
-SRC = $(filter-out teste.cpp, $(wildcard *.cpp))
-OBJ = $(SRC:.cpp=.o)
-TARGET = main
-TESTE_TARGET = teste
-LIBS_DIR = libs
-LIBS = $(LIBS_DIR)/utils.h
+
+# Compiler flags
+CXXFLAGS = -std=c++11 -Wall -Wextra
+
+# Directories
+SRCDIR = .
+LIBSDIR = libs
+OBJDIR = $(LIBSDIR)/obj
+
+# Source files
+SOURCES := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(LIBSDIR)/classes/*.cpp)
+OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
+
+# Main target
+TARGET = simulation
+
+.PHONY: all clean
 
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -I$(LIBS_DIR) -c $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-teste: $(TESTE_TARGET)
+$(OBJDIR)/%.o: $(LIBSDIR)/classes/%.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(TESTE_TARGET): teste.o
-	$(CXX) $(CXXFLAGS) -o $@ $^
+$(OBJDIR):
+	mkdir -p $(OBJDIR)
 
 clean:
-	rm -f $(OBJ) $(TARGET) teste.o $(TESTE_TARGET)
-
-.PHONY: all clean teste
+	rm -rf $(OBJDIR)/*.o $(TARGET)

@@ -1,9 +1,4 @@
-#include <iostream>
-#include <vector>
-
-#include "utils.h"
-
-using namespace std;
+#include "utils.hpp"
 
 void printMatrix(vector<vector<int>>& mat) {
     for (auto& row : mat) {

@@ -4,82 +4,9 @@
 #include <string>
 #include <vector>
 
-#include "./libs/utils.h"
+#include "libs/utils.hpp"
 
 using namespace std;
-
-enum class MapUnitType {
-    Grass,
-    Water,
-    Stone,
-    Wall,
-    Player
-};
-
-class Coord {
-    private:
-        int x, y;
-
-    public:
-        Coord(int x, int y) : x(x), y(y) {};
-        ~Coord() {};
-
-        int getX() { return x; };
-        int getY() { return y; };
-
-        void setX(int x) { this->x = x; };
-        void setY(int y) { this->y = y; };
-};
-
-class MapUnit {
-    private:
-        Coord *coord;
-        short int type;
-
-    public:
-        MapUnit() : coord(nullptr), type(-1) {};
-        MapUnit(Coord *coord, short int type) : coord(coord), type(type) {};
-        ~MapUnit() { };
-
-        Coord *getCoord() { return coord; };
-        short int getType() { return type; };
-
-        void setCoord(Coord *coord) { this->coord = coord; };
-        void setType(short int type) { this->type = type; };
-};
-
-class MapManager {
-    private:      
-
-        vector<vector<MapUnit>> map;  
-        int numRows;
-        int numCols;
-
-    public:
-        MapManager(vector<vector<MapUnit>> map, int numRows, int numCols) : map(map), numRows(numRows), numCols(numCols) {};
-        ~MapManager() { 
-            for (int i = 0; i < numRows; i++) {
-                for (int j = 0; j < numCols; j++) {
-                    delete map[i][j].getCoord();
-                }
-            }
-        };
-
-        int getNumRows() { return numRows; };
-        int getNumCols() { return numCols; };
-        Coord *getCoord(int x, int y) { return map[x][y].getCoord(); };
-
-        void printMap() {
-        for (int i = 0; i < numRows; i++) {
-            for (int j = 0; j < numCols; j++) {
-                cout << map[i][j].getType() << " ";
-            }
-            cout << endl;
-            }
-        }
-
-        void MapManagerTEST() { }
-};
 
 int main()
 {
@@ -127,9 +54,6 @@ int main()
     MapManager *mapManager = new MapManager(mapUnitMat, numRows, numCols);
 
     mapManager->printMap();
-
-
-
 
     delete mapManager;
 
