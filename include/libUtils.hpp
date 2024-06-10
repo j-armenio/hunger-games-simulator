@@ -1,10 +1,11 @@
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef LIB_UTILS_HPP
+#define LIB_UTILS_HPP
 
 #include <iostream>
 #include <vector>
 
 #include "MapManager.hpp"
+#include "libInit.hpp"
 
 using namespace std;
 

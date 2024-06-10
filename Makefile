@@ -6,7 +6,7 @@ BINDIR := bin
 
 # Compiler and flags
 CXX := g++
-CXXFLAGS := -I$(INCDIR) -Wall -Wextra -std=c++17
+CXXFLAGS := -I$(INCDIR) -Wall -Wextra -g
 
 # Sources and objects
 SRCFILES := $(wildcard $(SRCDIR)/*.cpp)

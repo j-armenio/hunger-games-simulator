@@ -1,24 +1,34 @@
-#ifndef MAPUNIT_H
-#define MAPUNIT_H
+#ifndef MAPUNIT_HPP
+#define MAPUNIT_HPP
 
 #include "Coord.hpp"
+
+enum class MapUnitType 
+{
+    INVALID = -1,
+    Player  = 0,
+    Wall    = 1,
+    Grass   = 2,
+    Water   = 3,
+    Stone   = 4
+};
 
 class MapUnit
 {
 public:
     MapUnit();
-    MapUnit(Coord *coord, short int type);
+    MapUnit(Coord *coord, MapUnitType type);
     ~MapUnit();
 
     Coord *getCoord();
-    short int getType();
+    MapUnitType getType();
 
     void setCoord(Coord *coord);
-    void setType(short int type);
+    void setType(MapUnitType type);
 
-private:
+protected:
     Coord *coord;
-    short int type;
+    MapUnitType type;
 };
 
 #endif

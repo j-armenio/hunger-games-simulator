@@ -1,5 +1,5 @@
-#ifndef COORD_H
-#define COORD_H
+#ifndef COORD_HPP
+#define COORD_HPP
 
 class Coord
 {
