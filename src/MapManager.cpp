@@ -1,4 +1,4 @@
-#include "MapManager.hpp"
+#include "../include/MapManager.hpp"
 
 MapManager::MapManager(vector<vector<MapUnit>> map, int numRows, int numCols) : map(map), numRows(numRows), numCols(numCols) {};
 

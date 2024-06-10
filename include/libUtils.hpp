@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-#include "./classes/MapManager.hpp"
+#include "MapManager.hpp"
 
 using namespace std;
 

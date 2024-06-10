@@ -1,36 +1,38 @@
-# Compiler
-CXX = g++
-
-# Compiler flags
-CXXFLAGS = -std=c++11 -Wall -Wextra
-
 # Directories
-SRCDIR = .
-LIBSDIR = libs
-OBJDIR = $(LIBSDIR)/obj
+SRCDIR := src
+INCDIR := include
+OBJDIR := obj
+BINDIR := bin
 
-# Source files
-SOURCES := $(wildcard $(SRCDIR)/*.cpp) $(wildcard $(LIBSDIR)/classes/*.cpp)
-OBJECTS := $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
+# Compiler and flags
+CXX := g++
+CXXFLAGS := -I$(INCDIR) -Wall -Wextra -std=c++17
 
-# Main target
-TARGET = simulation
+# Sources and objects
+SRCFILES := $(wildcard $(SRCDIR)/*.cpp)
+OBJFILES := $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCFILES))
+TARGET := $(BINDIR)/simulator
 
-.PHONY: all clean
-
+# Default target
 all: $(TARGET)
 
-$(TARGET): $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+# Link the final executable
+$(TARGET): $(OBJFILES) $(OBJDIR)/simulator.o
+	@mkdir -p $(BINDIR)
+	$(CXX) $^ -o $@
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+# Compile simulator.cpp separately since it's in a different directory
+$(OBJDIR)/simulator.o: app/simulator.cpp
+	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJDIR)/%.o: $(LIBSDIR)/classes/%.cpp | $(OBJDIR)
+# Compile other source files
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INCDIR)/%.hpp
+	@mkdir -p $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJDIR):
-	mkdir -p $(OBJDIR)
-
+# Clean up
 clean:
-	rm -rf $(OBJDIR)/*.o $(TARGET)
+	rm -rf $(OBJDIR) $(BINDIR)
+
+.PHONY: all clean

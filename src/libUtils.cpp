@@ -1,4 +1,4 @@
-#include "utils.hpp"
+#include "../include/libUtils.hpp"
 
 void printMatrix(vector<vector<int>>& mat) {
     for (auto& row : mat) {

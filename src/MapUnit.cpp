@@ -1,4 +1,4 @@
-#include "MapUnit.hpp"
+#include "../include/MapUnit.hpp"
 
 MapUnit::MapUnit() : coord(nullptr), type(-1) {};
 
