@@ -1,5 +1,5 @@
-#ifndef MAPMANAGER_HPP
-#define MAPMANAGER_HPP
+#ifndef MAP_MANAGER_HPP
+#define MAP_MANAGER_HPP
 
 #include <iostream>
 #include <vector>
@@ -10,23 +10,26 @@ using namespace std;
 
 class MapManager
 {
+private:
+    vector<vector<MapUnit>> map;
+    vector<vector<int>> mapMat;
+    int numRows;
+    int numCols;
+
 public:
     MapManager(vector<vector<MapUnit>> map, vector<vector<int>> mapMat, int numRows, int numCols);
     ~MapManager();
 
     int getNumRows();
     int getNumCols();
-    Coord *getCoord(int x, int y);
+    MapUnit *getUnit(int x, int y);
 
     void printMat();
     void printMap();
-    void MapManagerTEST();
+    
+    void moveUnit(MapUnit *unit, int x, int y);
 
-private:
-    vector<vector<MapUnit>> map;
-    vector<vector<int>> mapMat;
-    int numRows;
-    int numCols;
+    void MapManagerTEST();
 };
 
 #endif

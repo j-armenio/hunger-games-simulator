@@ -17,18 +17,18 @@ class MapUnit
 {
 public:
     MapUnit();
-    MapUnit(Coord *coord, MapUnitType type);
+    MapUnit(int x, int y, int type);
     ~MapUnit();
 
     Coord *getCoord();
-    MapUnitType getType();
+    int getType();
 
     void setCoord(Coord *coord);
-    void setType(MapUnitType type);
+    void setType(int type);
 
 protected:
     Coord *coord;
-    MapUnitType type;
+    int type;
 };
 
 #endif

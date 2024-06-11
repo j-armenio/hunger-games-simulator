@@ -16,7 +16,10 @@ int MapManager::getNumRows() { return numRows; };
 
 int MapManager::getNumCols() { return numCols; };
 
-Coord *MapManager::getCoord(int x, int y) { return map[x][y].getCoord(); };
+MapUnit* MapManager::getUnit(int x, int y) 
+{   
+    return &map[x][y];
+};
 
 void MapManager::printMat() 
 {
@@ -57,6 +60,12 @@ void MapManager::printMap()
         cout << endl;
     }
     cout << endl;
+}
+
+void MapManager::moveUnit(MapUnit *unit, int x, int y)
+{
+    Coord oldCoord = *unit->getCoord();
+    cout << "Old Coord: " << oldCoord.getX() << " " << oldCoord.getY() << endl;
 }
 
 void MapManager::MapManagerTEST() { }

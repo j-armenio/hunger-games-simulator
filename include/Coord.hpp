@@ -3,6 +3,9 @@
 
 class Coord
 {
+private:
+    int x, y;
+
 public:
     Coord(int x, int y);
     ~Coord();
@@ -12,9 +15,6 @@ public:
 
     void setX(int x);
     void setY(int y);
-
-private:
-    int x, y;
 };
 
 #endif
