@@ -11,18 +11,39 @@ using namespace std;
 class Player : public MapUnit
 {
 private:
-    MapUnit* unitBellow;
     string name;
+    MapUnit* unitBellow;
+
+    int strength;
+    int speed;
+
     int health;
     int stamina;
     int hunger;
     int thirst;
-    int strength;
-    int speed;
 
 public:
-    Player(int x, int y, const string& name, int hunger, int thirst, int strength, int speed);
+    Player(const string& name);
+    Player(const string& name, MapUnit *unitBellow, int strength, int speed);
     ~Player();
+
+    string getName();
+    MapUnit* getUnitBellow();
+    int getStrength();
+    int getSpeed();
+    int getHealth();
+    int getStamina();
+    int getHunger();
+    int getThirst();
+
+    void setName(const string& name);
+    void setUnitBellow(MapUnit *unitBellow);
+    void setStrength(int strength);
+    void setSpeed(int speed);
+    void setHealth(int health);
+    void setStamina(int stamina);
+    void setHunger(int hunger);
+    void setThirst(int thirst);
 };
 
-#endif,
+#endif

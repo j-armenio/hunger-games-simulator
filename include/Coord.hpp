@@ -7,6 +7,7 @@ private:
     int x, y;
 
 public:
+    Coord();
     Coord(int x, int y);
     ~Coord();
 

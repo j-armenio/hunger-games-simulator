@@ -10,16 +10,22 @@ using namespace std;
 
 int main()
 {
-    GameManager *gm = new GameManager();
     MapManager *mm = inputFileToMapManager("map.txt");
+    Coord *coordAux = new Coord(2, 2);
 
     // Criar um objeto Player
-    // Inserir o Player no vetor players do gm
-    // Atualizar o mm
-    // Imprimir o mapa
+    Player *player = new Player("p1");
 
+    // Colocar o player no mapa
+    mm->setPlayer(player, coordAux);
+
+    // Imprimir o mapa
     mm->printMap();
 
+    // Mover o player
+
+    delete coordAux;
+    delete player;
     delete mm;
 
     return 0;

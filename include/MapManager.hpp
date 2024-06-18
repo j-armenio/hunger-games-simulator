@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "MapUnit.hpp"
+#include "Player.hpp"
 
 using namespace std;
 
@@ -22,12 +23,13 @@ public:
 
     int getNumRows();
     int getNumCols();
-    MapUnit *getUnit(int x, int y);
+    MapUnit *getMapUnit(Coord *coord);
 
     void printMat();
     void printMap();
     
-    void moveUnit(MapUnit *unit, int x, int y);
+    void setPlayer(Player *player, Coord *coord);
+    void movePlayer(Player *player, Coord *coord);
 
     void MapManagerTEST();
 };

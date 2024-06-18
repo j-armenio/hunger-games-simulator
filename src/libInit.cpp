@@ -17,6 +17,7 @@ MapManager *inputFileToMapManager(string inputFile) {
     
     // Ler o arquivo e salvar os valores na matriz
     vector<vector<int>> mapMat(numRows, vector<int>(numCols));
+
     for (int i = 0; i < numRows; ++i) {
         if (getline(mapFile, line)) {
             istringstream iss(line);

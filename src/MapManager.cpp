@@ -16,9 +16,9 @@ int MapManager::getNumRows() { return numRows; };
 
 int MapManager::getNumCols() { return numCols; };
 
-MapUnit* MapManager::getUnit(int x, int y) 
+MapUnit* MapManager::getMapUnit(Coord *coord)
 {   
-    return &map[x][y];
+    return &map[coord->getX()][coord->getY()];
 };
 
 void MapManager::printMat() 
@@ -62,10 +62,32 @@ void MapManager::printMap()
     cout << endl;
 }
 
-void MapManager::moveUnit(MapUnit *unit, int x, int y)
+void MapManager::setPlayer(Player *player, Coord *coord)
 {
-    Coord oldCoord = *unit->getCoord();
-    cout << "Old Coord: " << oldCoord.getX() << " " << oldCoord.getY() << endl;
+    player->setUnitBellow(&map[coord->getX()][coord->getY()]);
+
+    player->getUnitBellow()->getTypeStr();
+
+    map[coord->getX()][coord->getY()] = *player;
+
+    player->getTypeStr();
+}
+
+void MapManager::movePlayer(Player *player, Coord *coord)
+{
+    /* 
+        pointers:
+            player->unitBellow
+            map[oldCoord]
+            map[coord]
+        1. aux = player->unitBellow
+        2. player->unitBellow = map[coord]
+        3. map[coord] = player
+        4. map[oldCoord] = aux
+    */
+   Coord *oldCoord = player->getCoord();
+   cout << "Old Coord: " << oldCoord->getX() << " " << oldCoord->getY() << endl;
+
 }
 
 void MapManager::MapManagerTEST() { }

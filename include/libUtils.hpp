@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "MapManager.hpp"
-#include "GameManager.hpp"
 #include "libInit.hpp"
 
 using namespace std;
